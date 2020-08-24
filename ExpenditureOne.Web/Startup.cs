@@ -1,5 +1,7 @@
+using ExpenditureOne.DAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -19,6 +21,8 @@ namespace ExpenditureOne.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddDbContext<ExpenditureContext>(options =>
+                     options.UseSqlServer(Configuration.GetConnectionString("ExpenditureContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,3 +1,4 @@
+using ExpenditureOne.BL;
 using ExpenditureOne.DAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -24,6 +25,9 @@ namespace ExpenditureOne.Web
             services.AddControllers();
             services.AddDbContext<ExpenditureContext>(options =>
                      options.UseSqlServer(Configuration.GetConnectionString("ExpenditureContext")));
+            services.AddSingleton(typeof(IExpenditureInitializer), typeof(ExpenditureInitializer));
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenditureOne.DAL", "Expen
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenditureOne.BL", "ExpenditureOne.BL\ExpenditureOne.BL.csproj", "{A45404E9-447A-494A-9746-7EEE85AD8E77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenditureOne.Client", "ExpenditureOne.Client\ExpenditureOne.Client.csproj", "{25C464F0-08A6-42DB-AC1B-71C8657CCA00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenditureOne.Client", "ExpenditureOne.Client\ExpenditureOne.Client.csproj", "{25C464F0-08A6-42DB-AC1B-71C8657CCA00}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ExpenditureOne.DAL
 {
     public class Expenditure
     {
+        [Key]
         public int Id { get; set; }
 
         public DateTime DateOfExpenditure { get; set; }
@@ -13,6 +15,6 @@ namespace ExpenditureOne.DAL
 
         public string Title { get; set; } 
 
-        public List<ExpenditureCategory> Categories { get; set; }
+        public virtual ICollection<ExpenditureCategory> Categories { get; set; }
     }
 }

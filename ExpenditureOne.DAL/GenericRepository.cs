@@ -23,7 +23,7 @@ namespace ExpenditureOne.DAL
 
         public void Create(T item)
         {
-            _context.Add(item);
+             _context.Add(item);
             _context.SaveChanges();
         }
 

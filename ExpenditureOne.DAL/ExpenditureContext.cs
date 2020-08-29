@@ -6,7 +6,7 @@ namespace ExpenditureOne.DAL
     public class ExpenditureContext : DbContext
     {
 
-        public ExpenditureContext(DbContextOptions<ExpenditureContext> options, , IExpenditureInitializer initializer) : base(options)
+        public ExpenditureContext(DbContextOptions<ExpenditureContext> options, IExpenditureInitializer initializer) : base(options)
         {
             initializer.Initialize(this);
         }

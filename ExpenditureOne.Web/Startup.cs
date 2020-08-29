@@ -1,3 +1,4 @@
+using AutoMapper;
 using ExpenditureOne.BL;
 using ExpenditureOne.DAL;
 using Microsoft.AspNetCore.Builder;
@@ -28,6 +29,17 @@ namespace ExpenditureOne.Web
             services.AddSingleton(typeof(IExpenditureInitializer), typeof(ExpenditureInitializer));
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new WebAutomapperProfile());
+                mc.AddProfile(new BLAutomapperProfile());
+            
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,5 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using AutoMapper;
 using ExpenditureOne.BL;
+using ExpenditureOne.BL.Models;
+using ExpenditureOne.Web.Responses;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -12,19 +16,24 @@ namespace ExpenditureOne.Web.Controllers
     {
 
         public readonly ICategoryService _categoryService;
+        private readonly IMapper _mapper;
 
-        public CategoryController(ICategoryService categoryService)
+        public CategoryController(IMapper mapper, ICategoryService categoryService)
         {
-            _categoryService = categoryService;
+            _categoryService = categoryService;        
+            _mapper = mapper;
         }
 
         // GET: api/<CategoryController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<GetCategoryResponse> Get()
         {
-            //TODO: finish it
-            _categoryService.Add(new BL.Models.CategoryBL());
-            return new string[] { "value1", "value2" };
+            var categories = await _categoryService.GetAll();
+            var categoriesModel = _mapper.Map<IEnumerable<GetCategoryModel>>(categories);
+
+            return new GetCategoryResponse { 
+                Categories = categoriesModel
+            };
         }
 
         // GET api/<CategoryController>/5

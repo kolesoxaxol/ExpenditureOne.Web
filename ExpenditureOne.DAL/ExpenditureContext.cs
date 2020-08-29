@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ExpenditureOne.DAL.Entities;
+using Microsoft.EntityFrameworkCore;
 using System.Configuration;
 
 namespace ExpenditureOne.DAL
@@ -9,6 +10,7 @@ namespace ExpenditureOne.DAL
         public ExpenditureContext(DbContextOptions<ExpenditureContext> options, IExpenditureInitializer initializer) : base(options)
         {
             initializer.Initialize(this);
+        
         }
 
         public DbSet<Expenditure> Expenditures { get; set; }

@@ -1,9 +1,10 @@
-﻿using System;
+﻿using ExpenditureOne.DAL.Entities;
+using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ExpenditureOne.DAL
 {
-   
+
     public class ExpenditureCategory
     {
         public int Id { get; set; }

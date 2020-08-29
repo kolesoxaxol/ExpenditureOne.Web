@@ -8,6 +8,7 @@ namespace ExpenditureOne.BL.Models
     {
         public int Id { get; set; }
         public string CategoryName { get; set; }
-        public string Color { get; set; }   
+        public string Color { get; set; }
+     
     }
 }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ExpenditureOne.BL.Models;
 using ExpenditureOne.Web.Responses;
+using ExpenditureOne.Web.Responses.Models;
 
 namespace ExpenditureOne.Web
 {

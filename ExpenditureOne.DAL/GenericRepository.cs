@@ -106,6 +106,7 @@ namespace ExpenditureOne.DAL
         {
             var entity = _dbSet.Find(id);
             _context.Entry(entity).State = EntityState.Detached;
+            //await _context.SaveChangesAsync();
         }
 
         public async virtual Task RemoveById(int id)

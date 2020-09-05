@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ExpenditureOne.BL.Models;
+using ExpenditureOne.Web.Models.Category;
 using ExpenditureOne.Web.Responses;
 using ExpenditureOne.Web.Responses.Models;
 
@@ -9,7 +10,8 @@ namespace ExpenditureOne.Web
     {
         public WebAutomapperProfile()
         {
-            CreateMap<CategoryBL, GetCategoryModel>().ReverseMap();
+            CreateMap<CategoryBL, CategoryModel>().ReverseMap();
+            CreateMap<CategoryBL, CategoryRequest>().ReverseMap();
         }
     }
 }

@@ -16,7 +16,7 @@ namespace ExpenditureOne.BL
         Task<ModelBL> FindById(int id);
         Task<ModelBL> Create(ModelBL modelBL);
         Task Delete(int id);
-        Task<ModelBL> Update(int id, ModelBL modelBL);
+        Task<ModelBL> Update(/*int id, */ ModelBL modelBL);
         Task<IEnumerable<ModelBL>> GetAll();
         Task<GenericPagedList<ModelBL>> GetPaged(int itemsPerPage, int Page, params Expression<Func<ModelBL, bool>>[] filters);
         Task<bool> CheckIfExists(int id);
@@ -53,9 +53,9 @@ namespace ExpenditureOne.BL
             await _repository.RemoveById(id);
         }
 
-        public async virtual Task<ModelBL> Update(int id, ModelBL modelBL)
+        public async virtual Task<ModelBL> Update(/*int id,*/ ModelBL modelBL)
         {
-            _repository.Detatch(id);
+            //_repository.Detatch(id);
             var entity = Map(modelBL);
             entity = await _repository.Update(entity);
             return Map(entity);

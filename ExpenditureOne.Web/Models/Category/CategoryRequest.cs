@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ExpenditureOne.Web.Responses.Models
+namespace ExpenditureOne.Web.Models.Category
 {
-    public class CategoryModel
+    public class CategoryRequest
     {
         public int Id { get; set; }
         public string CategoryName { get; set; }

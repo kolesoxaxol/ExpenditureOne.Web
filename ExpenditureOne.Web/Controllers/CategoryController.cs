@@ -5,6 +5,7 @@ using ExpenditureOne.BL;
 using ExpenditureOne.BL.Models;
 using ExpenditureOne.Web.Enums;
 using ExpenditureOne.Web.Models;
+using ExpenditureOne.Web.Models.Category;
 using ExpenditureOne.Web.Responses;
 using ExpenditureOne.Web.Responses.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -29,12 +30,12 @@ namespace ExpenditureOne.Web.Controllers
 
         // GET: api/<CategoryController>
         [HttpGet]
-        public async Task<BaseResponse<IEnumerable<GetCategoryModel>>> Get()
+        public async Task<BaseResponse<IEnumerable<CategoryModel>>> Get()
         {
             var categoriesBL = await _categoryService.GetAll();
-            var categories = _mapper.Map<IEnumerable<GetCategoryModel>>(categoriesBL);
+            var categories = _mapper.Map<IEnumerable<CategoryModel>>(categoriesBL);
 
-            return new BaseResponse<IEnumerable<GetCategoryModel>>
+            return new BaseResponse<IEnumerable<CategoryModel>>
             {
                 Data = categories
             };
@@ -42,30 +43,71 @@ namespace ExpenditureOne.Web.Controllers
 
         // GET api/<CategoryController>/5
         [HttpGet("{id}")]
-        public async Task<BaseResponse<GetCategoryModel>> Get(int id)
+        public async Task<BaseResponse<CategoryModel>> Get(int id)
         {
             var categoryBL = await _categoryService.FindById(id);
 
             if (categoryBL == null)
             {
-                return new BaseResponse<GetCategoryModel> { Code = ErrorCodes.Success, Message = $"Can't find category with id = {id}" };  
+                return new BaseResponse<CategoryModel> { Code = ErrorCodes.Success, Message = $"Can't find category with id = {id}" };
             }
 
-            var category = _mapper.Map<GetCategoryModel>(categoryBL);
+            var category = _mapper.Map<CategoryModel>(categoryBL);
 
-            return new BaseResponse<GetCategoryModel> { Data = category };
+            return new BaseResponse<CategoryModel> { Data = category };
         }
 
         // POST api/<CategoryController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<BaseResponse<CategoryModel>> Post(CategoryRequest categoryRequest)
         {
+            var categoryBL = _mapper.Map<CategoryBL>(categoryRequest);
+            categoryBL = await _categoryService.Create(categoryBL);
+
+            var response = _mapper.Map<CategoryModel>(categoryBL);
+            return new BaseResponse<CategoryModel> { Data = response};
         }
+
+        //TODO: Implement paging
+        //public async virtual Task<GenericPagedList<ModelBL>> GetPaged(int itemsPerPage, int Page, params Expression<Func<ModelBL, bool>>[] filters)
+        //{
+        //    var skip = itemsPerPage * (Page - 1);
+        //    var entitiesQuery = _repository.Query();
+        //    var modelsQuery = _mapper.ProjectTo<ModelBL>(entitiesQuery);
+        //    foreach (var filter in filters)
+        //    {
+        //        modelsQuery = modelsQuery.Where(filter);
+        //    }
+        //    var totalPages = (modelsQuery.Count() - 1) / itemsPerPage + 1;
+        //    var pagedItems = await modelsQuery.Skip(skip).Take(itemsPerPage).ToListAsync();
+
+        //    var pagedList = new GenericPagedList<ModelBL>
+        //    {
+        //        Items = pagedItems,
+        //        TotalPages = totalPages,
+        //        CurrentPage = Page
+        //    };
+
+        //    return pagedList;
+        //}
 
         // PUT api/<CategoryController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<BaseResponse> Put(CategoryRequest categoryRequest)
         {
+            var isCategoryExist = await _categoryService.CheckIfExists(categoryRequest.Id);
+
+            if (isCategoryExist)
+            {
+                return new BaseResponse { Code = ErrorCodes.NotFound, Message = $"Can't find item with id= {category.Id}" };
+            }
+
+            var category = _mapper.Map<CategoryBL>(categoryRequest);
+
+            await _categoryService.Update(category);
+
+            return new BaseResponse();
+
         }
 
         // DELETE api/<CategoryController>/5
@@ -82,7 +124,6 @@ namespace ExpenditureOne.Web.Controllers
             await _categoryService.Delete(id);
 
             return new BaseResponse();
-
         }
     }
 }

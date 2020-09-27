@@ -6,7 +6,6 @@ using ExpenditureOne.BL.Models;
 using ExpenditureOne.Web.Enums;
 using ExpenditureOne.Web.Models;
 using ExpenditureOne.Web.Models.Category;
-using ExpenditureOne.Web.Responses;
 using ExpenditureOne.Web.Responses.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -99,7 +98,7 @@ namespace ExpenditureOne.Web.Controllers
 
             if (isCategoryExist)
             {
-                return new BaseResponse { Code = ErrorCodes.NotFound, Message = $"Can't find item with id= {category.Id}" };
+                return new BaseResponse { Code = ErrorCodes.NotFound, Message = $"Can't find item with id= {categoryRequest.Id}" };
             }
 
             var category = _mapper.Map<CategoryBL>(categoryRequest);

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ExpenditureOne.BL
 {
-    public interface IGenereicService<ModelBL>
+    public interface IGenericService<ModelBL>
     where ModelBL : class
     {
         Task<ModelBL> FindById(int id);
@@ -22,7 +22,7 @@ namespace ExpenditureOne.BL
         Task<bool> CheckIfExists(int id);
     }
 
-    public abstract class GenericService<ModelBL, Entity> : IGenereicService<ModelBL>
+    public abstract class GenericService<ModelBL, Entity> : IGenericService<ModelBL>
         where ModelBL : class
         where Entity : class
     {

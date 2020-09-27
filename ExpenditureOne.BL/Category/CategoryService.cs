@@ -6,7 +6,7 @@ using ExpenditureOne.DAL.Entities;
 namespace ExpenditureOne.BL
 {
 
-    public interface ICategoryService : IGenereicService<CategoryBL>
+    public interface ICategoryService : IGenericService<CategoryBL>
     {
 
     }

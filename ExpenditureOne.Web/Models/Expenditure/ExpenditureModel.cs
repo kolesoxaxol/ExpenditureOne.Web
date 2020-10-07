@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace ExpenditureOne.BL.Expenditure
+namespace ExpenditureOne.Web.Models.Expenditure
 {
-    public class ExpenditureBL
+    public class ExpenditureModel
     {
         public int Id { get; set; }
 

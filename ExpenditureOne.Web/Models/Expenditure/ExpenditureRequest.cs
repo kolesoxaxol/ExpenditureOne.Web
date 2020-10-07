@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace ExpenditureOne.BL.Expenditure
+namespace ExpenditureOne.Web.Models.Expenditure
 {
-    public class ExpenditureBL
+    public class ExpenditureRequest
     {
         public int Id { get; set; }
-
         public DateTime DateOfExpenditure { get; set; }
 
         public string Description { get; set; }
 
         public string Title { get; set; }
+
+       // public  ICollection<ExpenditureCategory> Categories { get; set; }
     }
 }

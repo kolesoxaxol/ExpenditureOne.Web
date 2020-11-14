@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenditureOne.BL", "Expend
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenditureOne.Client", "ExpenditureOne.Client\ExpenditureOne.Client.csproj", "{25C464F0-08A6-42DB-AC1B-71C8657CCA00}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Expenditure.UnitTests", "Expenditure.UnitTests\Expenditure.UnitTests.csproj", "{EBD4D94E-751D-4D8E-B6E7-364F2D3E8281}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{25C464F0-08A6-42DB-AC1B-71C8657CCA00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25C464F0-08A6-42DB-AC1B-71C8657CCA00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{25C464F0-08A6-42DB-AC1B-71C8657CCA00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBD4D94E-751D-4D8E-B6E7-364F2D3E8281}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBD4D94E-751D-4D8E-B6E7-364F2D3E8281}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBD4D94E-751D-4D8E-B6E7-364F2D3E8281}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBD4D94E-751D-4D8E-B6E7-364F2D3E8281}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

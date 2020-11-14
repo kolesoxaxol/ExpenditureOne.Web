@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace ExpenditureOne.DAL
+namespace ExpenditureOne.DAL.Entities
 {
     public class Expenditure
     {

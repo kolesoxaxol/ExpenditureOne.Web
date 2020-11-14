@@ -28,6 +28,7 @@ namespace ExpenditureOne.Web
                      options.UseSqlServer(Configuration.GetConnectionString("ExpenditureContext")));
             services.AddSingleton(typeof(IExpenditureInitializer), typeof(ExpenditureInitializer));
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IExpenditureService, ExpenditureService>();
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
             var mappingConfig = new MapperConfiguration(mc =>

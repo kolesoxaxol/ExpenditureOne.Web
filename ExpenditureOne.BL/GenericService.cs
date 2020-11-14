@@ -101,7 +101,7 @@ namespace ExpenditureOne.BL
         }
 
         protected Entity Map(ModelBL model)
-        {
+        {         
             return _mapper.Map<Entity>(model);
         }
 
@@ -114,7 +114,5 @@ namespace ExpenditureOne.BL
         {
             return _mapper.Map<IEnumerable<Entity>>(entitiesList);
         }
-
-
     }
 }

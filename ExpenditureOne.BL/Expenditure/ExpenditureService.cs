@@ -9,10 +9,10 @@ namespace ExpenditureOne.BL
     public interface IExpenditureService : IGenericService<ExpenditureBL>
     { 
     }
-    public class ExpenditureService : GenericService<ExpenditureBL, ExpenditureOne.DAL.Expenditure>, IExpenditureService
+    public class ExpenditureService : GenericService<ExpenditureBL, DAL.Entities.Expenditure>, IExpenditureService
     {
 
-        public ExpenditureService(IGenericRepository<ExpenditureOne.DAL.Expenditure> repository, IMapper mapper) : base(repository, mapper)
+        public ExpenditureService(IGenericRepository<DAL.Entities.Expenditure> repository, IMapper mapper) : base(repository, mapper)
         {
 
         }

@@ -13,7 +13,7 @@ namespace ExpenditureOne.Web
         public WebAutomapperProfile()
         {
             CreateMap<CategoryBL, CategoryModel>().ReverseMap();
-            CreateMap<CategoryBL, CategoryRequest>().ReverseMap();
+            CreateMap<CategoryBL, CategoryCreateRequest>().ReverseMap();
             CreateMap<ExpenditureBL, ExpenditureModel>().ReverseMap();
             CreateMap<ExpenditureBL, ExpenditureRequest>().ReverseMap();
         }

@@ -58,7 +58,7 @@ namespace ExpenditureOne.Web.Controllers
 
         // POST api/<CategoryController>
         [HttpPost]
-        public async Task<BaseResponse<CategoryModel>> Post(CategoryRequest categoryRequest)
+        public async Task<BaseResponse<CategoryModel>> Post(CategoryCreateRequest categoryRequest)
         {
             var categoryBL = _mapper.Map<CategoryBL>(categoryRequest);
             categoryBL = await _categoryService.Create(categoryBL);
@@ -92,7 +92,7 @@ namespace ExpenditureOne.Web.Controllers
 
         // PUT api/<CategoryController>/5
         [HttpPut("{id}")]
-        public async Task<BaseResponse> Put(CategoryRequest categoryRequest)
+        public async Task<BaseResponse> Put(CategoryEditRequest categoryRequest)
         {
             var isCategoryExist = await _categoryService.CheckIfExists(categoryRequest.Id);
 

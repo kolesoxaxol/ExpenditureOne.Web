@@ -9,7 +9,8 @@ namespace ExpenditureOne.DAL
 
         public ExpenditureContext(DbContextOptions<ExpenditureContext> options, IExpenditureInitializer initializer) : base(options)
         {
-            initializer.Initialize(this);
+            // uncomment it to turn on db initialize or continue use migration
+           // initializer.Initialize(this);
         
         }
 

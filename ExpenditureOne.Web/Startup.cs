@@ -38,6 +38,17 @@ namespace ExpenditureOne.Web
             
             });
 
+            // TODO: configurate it for improve security 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                  );
+            });
+
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
 
@@ -54,6 +65,7 @@ namespace ExpenditureOne.Web
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors("CorsPolicy");
 
             app.UseAuthorization();
 

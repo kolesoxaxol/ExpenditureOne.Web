@@ -23,6 +23,8 @@ namespace ExpenditureOne.Client
         {
             services.AddControllersWithViews();
 
+          
+
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -49,7 +51,7 @@ namespace ExpenditureOne.Client
             app.UseSpaStaticFiles();
 
             app.UseRouting();
-
+            app.UseCors("CorsPolicy");
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

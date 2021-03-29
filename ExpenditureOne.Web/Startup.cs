@@ -15,7 +15,6 @@ namespace ExpenditureOne.Web
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-
         }
 
         public IConfiguration Configuration { get; }
@@ -24,6 +23,7 @@ namespace ExpenditureOne.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSwaggerGen(c => c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo {Version="v1", Title="ExpenditureOne Api" }));
             services.AddDbContext<ExpenditureContext>(options =>
                      options.UseSqlServer(Configuration.GetConnectionString("ExpenditureContext")));
             services.AddSingleton(typeof(IExpenditureInitializer), typeof(ExpenditureInitializer));
@@ -61,6 +61,10 @@ namespace ExpenditureOne.Web
             {
                 app.UseDeveloperExceptionPage();
             }
+
+
+            app.UseSwagger();
+            app.UseSwaggerUI(sw=> sw.SwaggerEndpoint("/swagger/v1/swagger.json", "ExpenditureOne Api v1"));
 
             app.UseHttpsRedirection();
 

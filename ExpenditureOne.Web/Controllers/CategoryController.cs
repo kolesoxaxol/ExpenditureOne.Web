@@ -96,7 +96,7 @@ namespace ExpenditureOne.Web.Controllers
         {
             var isCategoryExist = await _categoryService.CheckIfExists(categoryRequest.Id);
 
-            if (isCategoryExist)
+            if (!isCategoryExist)
             {
                 return new BaseResponse { Code = ErrorCodes.NotFound, Message = $"Can't find item with id= {categoryRequest.Id}" };
             }
@@ -115,7 +115,7 @@ namespace ExpenditureOne.Web.Controllers
         {
             var isCategoryExist = await _categoryService.CheckIfExists(id);
 
-            if (isCategoryExist)
+            if (!isCategoryExist)
             {
                 return new BaseResponse { Code = ErrorCodes.NotFound, Message = $"Can't find item with id= {id}" };
             }

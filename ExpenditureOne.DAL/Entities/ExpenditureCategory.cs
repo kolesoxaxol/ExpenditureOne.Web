@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ExpenditureOne.DAL
 {
 
-    public class ExpenditureCategory
+    public class ExpenditureCategory : IEntity
     {
         public int Id { get; set; }
 

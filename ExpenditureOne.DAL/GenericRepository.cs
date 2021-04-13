@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace ExpenditureOne.DAL
 {
+    public interface IEntity
+    {
+        int Id { get; set; }
+    }
 
-    public interface IGenericRepository<TEntity> where TEntity : class
+    public interface IGenericRepository<TEntity> where TEntity : class, IEntity
     {
         Task<TEntity> FindById(int id);
 
@@ -29,7 +33,7 @@ namespace ExpenditureOne.DAL
         void Dispose();
     }
 
-    public class GenericRepository<TEntity> : IDisposable, IGenericRepository<TEntity> where TEntity : class
+    public class GenericRepository<TEntity> : IDisposable, IGenericRepository<TEntity> where TEntity : class, IEntity
     {
         readonly DbContext _context;
         readonly DbSet<TEntity> _dbSet;
@@ -96,8 +100,8 @@ namespace ExpenditureOne.DAL
 
         public async Task<TEntity> Update(TEntity item)
         {
-            _dbSet.Attach(item);
-            _context.Entry(item).State = EntityState.Modified;
+            Detatch(item.Id);
+            _dbSet.Update(item);
             await _context.SaveChangesAsync();
             return item;
         }

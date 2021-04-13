@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace ExpenditureOne.BL
 {
+
     public interface IGenericService<ModelBL>
     where ModelBL : class
     {
@@ -24,7 +25,7 @@ namespace ExpenditureOne.BL
 
     public abstract class GenericService<ModelBL, Entity> : IGenericService<ModelBL>
         where ModelBL : class
-        where Entity : class
+        where Entity : class, IEntity
     {
         protected readonly IGenericRepository<Entity> _repository;
         protected readonly IMapper _mapper;
@@ -57,6 +58,7 @@ namespace ExpenditureOne.BL
         {
             //_repository.Detatch(id);
             var entity = Map(modelBL);
+
             entity = await _repository.Update(entity);
             return Map(entity);
         }
@@ -101,7 +103,7 @@ namespace ExpenditureOne.BL
         }
 
         protected Entity Map(ModelBL model)
-        {         
+        {
             return _mapper.Map<Entity>(model);
         }
 

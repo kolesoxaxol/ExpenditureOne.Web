@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ExpenditureOne.DAL.Entities
 {
-    public class Expenditure
+    public class Expenditure : IEntity
     {
         [Key]
         public int Id { get; set; }

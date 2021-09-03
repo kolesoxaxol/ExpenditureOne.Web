@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using ExpenditureOne.BL;
 using ExpenditureOne.BL.Expenditure;
+using ExpenditureOne.Web.Enums;
 using ExpenditureOne.Web.Models;
 using ExpenditureOne.Web.Models.Expenditure;
 using Microsoft.AspNetCore.Mvc;
@@ -42,6 +43,21 @@ namespace ExpenditureOne.Web.Controllers
 
             var response = _mapper.Map<ExpenditureModel>(expenditureBL);
             return new BaseResponse<ExpenditureModel> { Data = response };
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<BaseResponse> Delete(int id)
+        {
+            var isExpenditureExist = await _expenditureService.CheckIfExists(id);
+
+            if (!isExpenditureExist)
+            {
+                return new BaseResponse { Code = ErrorCodes.NotFound, Message = $"Can't find item with id= {id}" };
+            }
+
+            await _expenditureService.Delete(id);
+
+            return new BaseResponse { Code = ErrorCodes.Success, Message = $"Deletet item with id={id}" };
         }
     }
 }

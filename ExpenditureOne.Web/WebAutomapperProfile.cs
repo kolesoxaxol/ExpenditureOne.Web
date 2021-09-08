@@ -14,9 +14,11 @@ namespace ExpenditureOne.Web
         {
             CreateMap<CategoryBL, CategoryModel>().ReverseMap();
             CreateMap<CategoryBL, CategoryCreateRequest>().ReverseMap();
+            CreateMap<CategoryBL, CategoryEditRequest>().ReverseMap();
+
             CreateMap<ExpenditureBL, ExpenditureModel>().ReverseMap();
             CreateMap<ExpenditureBL, ExpenditureRequest>().ReverseMap();
-            CreateMap<CategoryBL, CategoryEditRequest>().ReverseMap();
+            CreateMap<ExpenditureBL, ExpenditureEditRequest>().ReverseMap();
         }
     }
 }

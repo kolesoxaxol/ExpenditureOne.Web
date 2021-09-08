@@ -27,9 +27,10 @@ namespace ExpenditureOne.DAL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ExpenditureCategory>().HasKey(bc => new { bc.ExpenditureId, bc.CategoryId });
-            modelBuilder.Entity<ExpenditureCategory>().HasOne(ec => ec.Category).WithMany(ec => ec.Expenditures).HasForeignKey(ec => ec.CategoryId);
-            modelBuilder.Entity<ExpenditureCategory>().HasOne(ec => ec.Expenditure).WithMany(ec => ec.Categories).HasForeignKey(ec => ec.ExpenditureId);
+            modelBuilder.Entity<ExpenditureCategory>().HasKey(ec => new { ec.ExpenditureId, ec.CategoryId });
+            modelBuilder.Entity<ExpenditureCategory>().HasOne(ec => ec.Category).WithMany(c => c.Expenditures).HasForeignKey(ec => ec.CategoryId);
+            modelBuilder.Entity<ExpenditureCategory>().HasOne(ec => ec.Expenditure).WithMany(e => e.Categories).HasForeignKey(ec => ec.ExpenditureId);
+
             base.OnModelCreating(modelBuilder);
             //modelBuilder.Entity<Category>().HasData(new Category { Id = 1, CategoryName = "test category", Color = "red" });
         }

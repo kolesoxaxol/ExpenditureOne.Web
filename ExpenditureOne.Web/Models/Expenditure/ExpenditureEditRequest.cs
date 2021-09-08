@@ -1,15 +1,14 @@
-﻿using Newtonsoft.Json;
+﻿using ExpenditureOne.DAL;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ExpenditureOne.Web.Models.Expenditure
 {
-    public class ExpenditureRequest
+    public class ExpenditureEditRequest
     {
-        //[JsonProperty(PropertyName = "id")]
-        //public int Id { get; set; }
+        [JsonProperty(PropertyName = "id")]
+        public int Id { get; set; }
 
         [JsonProperty(PropertyName = "dateOfExpenditure")]
         public DateTime? DateOfExpenditure { get; set; }
@@ -20,6 +19,7 @@ namespace ExpenditureOne.Web.Models.Expenditure
         [JsonProperty(PropertyName = "title")]
         public string Title { get; set; }
 
-       // public  ICollection<ExpenditureCategory> Categories { get; set; }
+        [JsonProperty(PropertyName = "categories")]
+        public ICollection<ExpenditureCategory> Categories { get; set; }
     }
 }

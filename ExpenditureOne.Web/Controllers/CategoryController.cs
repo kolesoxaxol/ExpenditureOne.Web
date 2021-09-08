@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using AutoMapper;
 using ExpenditureOne.BL;
 using ExpenditureOne.BL.Models;
+using ExpenditureOne.DAL;
+using ExpenditureOne.DAL.Entities;
 using ExpenditureOne.Web.Enums;
 using ExpenditureOne.Web.Models;
 using ExpenditureOne.Web.Models.Category;
@@ -19,18 +21,21 @@ namespace ExpenditureOne.Web.Controllers
     {
 
         public readonly ICategoryService _categoryService;
+        //protected readonly IGenericRepository<Category> _repository;
         private readonly IMapper _mapper;
 
-        public CategoryController(IMapper mapper, ICategoryService categoryService)
+        public CategoryController(IMapper mapper, ICategoryService categoryService, IGenericRepository<Category> repository)
         {
             _categoryService = categoryService;
             _mapper = mapper;
+            //_repository = repository;
         }
 
         // GET: api/<CategoryController>
         [HttpGet]
         public async Task<BaseResponse<IEnumerable<CategoryModel>>> Get()
         {
+            //var t = await _repository.Get();
             var categoriesBL = await _categoryService.GetAll();
             var categories = _mapper.Map<IEnumerable<CategoryModel>>(categoriesBL);
 

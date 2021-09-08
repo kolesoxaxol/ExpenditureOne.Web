@@ -11,6 +11,8 @@ namespace ExpenditureOne.DAL.Entities
         public int Id { get; set; }
         public string CategoryName { get; set; }
         public string Color { get; set; }
-        public virtual ICollection<ExpenditureCategory> Expenditures { get; set; }
+        public /*virtual*/ ICollection<ExpenditureCategory> ExpenditureCategory { get; set; }
+        public /*virtual*/ List<Expenditure> Expendituries { get; set; }
+
     }
 }

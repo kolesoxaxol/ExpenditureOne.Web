@@ -9,15 +9,15 @@ namespace ExpenditureOne.DAL
     {
         public int Id { get; set; }
 
-        [ForeignKey("Category")]
+        //[ForeignKey("Category")]
         public int CategoryId { get; set; }
 
-        [ForeignKey("Expenditure")]
+        //[ForeignKey("Expenditure")]
         public int ExpenditureId { get; set; }
 
-        public virtual Category Category { get; set; }
+        public /*virtual*/ Category Category { get; set; }
 
-        public virtual Expenditure Expenditure { get; set; }
+        public /*virtual*/ Expenditure Expenditure { get; set; }
     
     }
 }

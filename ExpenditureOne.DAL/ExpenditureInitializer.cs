@@ -67,7 +67,7 @@ namespace ExpenditureOne.DAL
                 }
 
 
-                category.Expenditures = expenditureCategoryLinkList;
+                category.ExpenditureCategory = expenditureCategoryLinkList;
 
 
                 context.Categories.Add(category);

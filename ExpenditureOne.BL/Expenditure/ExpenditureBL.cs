@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExpenditureOne.BL.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -13,5 +14,7 @@ namespace ExpenditureOne.BL.Expenditure
         public string Description { get; set; }
 
         public string Title { get; set; }
+
+        public ICollection<CategoryBL> Categories { get; set; }
     }
 }

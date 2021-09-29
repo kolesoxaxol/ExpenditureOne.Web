@@ -7,7 +7,7 @@ namespace ExpenditureOne.BL
 {
 
     public interface IExpenditureService : IGenericService<ExpenditureBL>
-    { 
+    {
     }
     public class ExpenditureService : GenericService<ExpenditureBL, DAL.Entities.Expenditure>, IExpenditureService
     {

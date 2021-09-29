@@ -26,10 +26,13 @@ namespace ExpenditureOne.Web
             services.AddSwaggerGen(c => c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo {Version="v1", Title="ExpenditureOne Api" }));
             services.AddDbContext<ExpenditureContext>(options =>
                      options.UseSqlServer(Configuration.GetConnectionString("ExpenditureContext")));
+
             services.AddSingleton(typeof(IExpenditureInitializer), typeof(ExpenditureInitializer));
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IExpenditureService, ExpenditureService>();
+            services.AddScoped<IExpenditureService2, ExpenditureService2>();
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped(typeof(IGenericRepository2<>), typeof(GenericRepository2<>));
 
             var mappingConfig = new MapperConfiguration(mc =>
             {

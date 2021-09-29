@@ -1,5 +1,4 @@
-﻿using ExpenditureOne.DAL;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -20,6 +19,6 @@ namespace ExpenditureOne.Web.Models.Expenditure
         public string Title { get; set; }
 
         [JsonProperty(PropertyName = "categories")]
-        public ICollection<ExpenditureCategory> Categories { get; set; }
+        public ICollection<DAL.Entities.Category> Categories { get; set; }
     }
 }

@@ -1,7 +1,6 @@
-﻿using System;
+﻿using ExpenditureOne.Web.Responses.Models;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ExpenditureOne.Web.Models.Expenditure
 {
@@ -14,5 +13,6 @@ namespace ExpenditureOne.Web.Models.Expenditure
         public string Description { get; set; }
 
         public string Title { get; set; }
+        public ICollection<CategoryModel> Categories { get; set; }
     }
 }

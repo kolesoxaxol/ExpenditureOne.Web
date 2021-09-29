@@ -1,12 +1,17 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using ExpenditureOne.BL;
 using ExpenditureOne.BL.Expenditure;
+using ExpenditureOne.DAL;
+using ExpenditureOne.DAL.Entities;
 using ExpenditureOne.Web.Enums;
 using ExpenditureOne.Web.Models;
 using ExpenditureOne.Web.Models.Expenditure;
+using ExpenditureOne.Web.Responses.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ExpenditureOne.Web.Controllers
 {
@@ -15,11 +20,13 @@ namespace ExpenditureOne.Web.Controllers
     public class ExpenditureController : ControllerBase
     {
         public readonly IExpenditureService _expenditureService;
+        public readonly IExpenditureService2 _expenditureService2;
         public readonly ICategoryService _categoryService;
         private readonly IMapper _mapper;
 
-        public ExpenditureController(IMapper mapper, IExpenditureService expenditureService, ICategoryService categoryService)
+        public ExpenditureController(IMapper mapper, IExpenditureService expenditureService, IExpenditureService2 expenditureService2, ICategoryService categoryService)
         {
+            _expenditureService2 = expenditureService2;
             _expenditureService = expenditureService;
             _categoryService = categoryService;
             _mapper = mapper;
@@ -28,13 +35,18 @@ namespace ExpenditureOne.Web.Controllers
         [HttpGet]
         public async Task<BaseResponse<IEnumerable<ExpenditureModel>>> Get()
         {
-            var expenditureBL = await _expenditureService.GetAll();
+            //var expenditureBL = await _expenditureService.GetAll();
+            //var expenditures = _mapper.Map<IEnumerable<ExpenditureModel>>(expenditureBL);
+
+            var expenditureBL = await _expenditureService2.GetAll();
             var expenditures = _mapper.Map<IEnumerable<ExpenditureModel>>(expenditureBL);
 
-            return new BaseResponse<IEnumerable<ExpenditureModel>>
+            var result = new BaseResponse<IEnumerable<ExpenditureModel>>
             {
                 Data = expenditures
             };
+
+            return result;
         }
 
         [HttpGet("{id}")]
@@ -55,18 +67,18 @@ namespace ExpenditureOne.Web.Controllers
         [HttpPut("{id}")]
         public async Task<BaseResponse> Put(ExpenditureEditRequest expenditureRequest)
         {
-            var isExpenditureExist = await _expenditureService.CheckIfExists(expenditureRequest.Id);
+            var isExpenditureExist = await _expenditureService2.CheckIfExists(expenditureRequest.Id);
 
             if (!isExpenditureExist)
             {
                 return new BaseResponse { Code = ErrorCodes.NotFound, Message = $"Can't find item with id= {expenditureRequest.Id}" };
             }
+            
+            var expenditure = _mapper.Map<ExpenditureBL>(expenditureRequest);
 
-            var category = _mapper.Map<ExpenditureBL>(expenditureRequest);
+            await _expenditureService2.Update(expenditure);
 
-            await _expenditureService.Update(category);
-
-            return new BaseResponse();
+            return new BaseResponse<ExpenditureBL> { Data = expenditure };
         }
 
         [HttpPost]
@@ -82,14 +94,14 @@ namespace ExpenditureOne.Web.Controllers
         [HttpDelete("{id}")]
         public async Task<BaseResponse> Delete(int id)
         {
-            var isExpenditureExist = await _expenditureService.CheckIfExists(id);
+            var isExpenditureExist = await _expenditureService2.CheckIfExists(id);
 
             if (!isExpenditureExist)
             {
                 return new BaseResponse { Code = ErrorCodes.NotFound, Message = $"Can't find item with id= {id}" };
             }
 
-            await _expenditureService.Delete(id);
+            await _expenditureService2.Delete(id);
 
             return new BaseResponse { Code = ErrorCodes.Success, Message = $"Deletet item with id={id}" };
         }
